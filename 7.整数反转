@@ -1,0 +1,19 @@
+int reverse(int x) {
+int m, n;
+long long result;
+m = x / 10;
+n = x % 10;
+result = n;
+int flog1 = 2147483647;
+int flog2 = -2147483648;
+while (m)
+{
+	n = m % 10;
+	m = m / 10;
+	result = result * 10 + n;
+}
+
+if (result>flog1||result<flog2)
+	return 0;
+return result;
+}
