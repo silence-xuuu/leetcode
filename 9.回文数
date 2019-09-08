@@ -1,13 +1,53 @@
-bool isPalindrome(long x) {
-    if(x<0) return false;
-    if(x!=0 && x%10==0) return false;
-    long n = x;
-    long y = 0;
-        while(n){
-            long r  = n % 10;
-            y = y*10 + r;
-            n/=10;
-        }
-    if(x==y) return true;
-    else return false;
+
+
+bool isPalindrome(int x){
+    //负数一定不是回文数
+    if(x < 0)
+    return false;
+    //123321
+    //将这个数的后面一半拿下来，组成一个新的整数
+    //统计整数的的位数数
+    int tmp = x;
+    int count = 0;
+    int nnum = 0;
+    while(tmp)
+    {
+        count++;
+        tmp/=10;
+    }
+    
+    //取后面一半的位数 组成新整数
+    for(int i = 0; i<count/2; i++)
+    {
+    //只有第一次拿下来是个 一位数，其余每次拿下来都要在上一次的nnum基础上*10
+        if(i==0)
+         {
+           nnum = x%10;
+           x /= 10;
+         }
+        else
+         {
+           nnum =  (x%10) + nnum*10;
+           x /= 10;         
+          }
+    }
+    
+     //比较新的整数 和 剩余部分整数 大小
+    if(count %2 ==0)
+    {
+        //说明整数是偶数位，取count/2位数组成新的整数
+        if(x == nnum)
+            return true;
+        return false;
+        
+    }
+    else
+    {
+        //整数是奇数位，取count/2位数 组成新的整数后，还需要将剩余整数再去掉最后一位
+        x /= 10;
+         if(x == nnum)
+            return true;
+        return false;
+        
+    }  
 }
