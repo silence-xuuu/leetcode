@@ -1,0 +1,16 @@
+int removeDuplicates(int* nums, int numsSize) {
+    if (numsSize==0) return 0;
+    int count=1;
+    int temp=nums[0];
+    for(int i=1;i<numsSize;i++){
+        if(nums[i]!=temp){
+            nums[count]=nums[i];
+            count++;
+            temp=nums[i];
+        }
+    }
+    return count;
+}
+
+思路（同27）：
+遍历数组中的所有元素，创建一个从0开始的下标变量，若元素值与给定值不相等时，存入数组的下标变量元素中，并递增下标变量。
