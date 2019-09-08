@@ -15,3 +15,10 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize){
     }
     return 0;
 }
+
+思路：暴力迭代法
+双层循环遍历寻找符合的两个元素值。
+
+思考感悟：
+1.hash表的学习。
+2.多次循环套用时适当牺牲空间复杂度减少时间复杂度。
