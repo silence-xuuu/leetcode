@@ -1,0 +1,14 @@
+int removeElement(int* nums, int numsSize, int val){
+    if(numsSize==0) return 0;
+    int count=0;
+    for(int i=0;i<numsSize;i++){
+        if(*(nums+i)!=val){
+            nums[count]=nums[i];
+            count++;
+        }
+    }
+    return count;
+}
+
+思路：
+遍历数组中的所有元素，创建一个从0开始的下标变量，若元素值与给定值相等时，存入数组的下标变量元素中，并递增下标变量。
