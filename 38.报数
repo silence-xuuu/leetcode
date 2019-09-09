@@ -1,0 +1,34 @@
+char *count1(char *s, int n)
+{
+    int count=0;
+    if (n == 1)
+        return s;
+    else
+    {
+        char ch[10000];
+        char *p = ch;
+        while (*s!='\0')
+        {
+            count = 1;
+            while (*s==*(s+1))
+            {
+                count++;
+                s++;
+            }
+            *p++ = (char)(count+'0');
+            *p++ = *s++;
+        }
+        return count1(ch, n - 1);
+    }
+}
+
+char *countAndSay(int n)
+{
+    return count1("1", n);
+}
+
+思路：递归法
+定义一个子函数将递归的某一步写清楚后在主函数中调用递归的模型。
+
+思考感悟：
+1递归法玄之又玄hhh，在一个子函数不能完全实现递归时可以创建二层的子函数完成递归。
