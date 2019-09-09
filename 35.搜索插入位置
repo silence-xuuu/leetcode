@@ -1,0 +1,13 @@
+int searchInsert(int* nums, int numsSize, int target){
+    int i,count=0;
+    for(i=0;i<numsSize;i++){
+        if (nums[i]<target){
+            count++;
+        }
+        if(nums[i]>target) break;
+    }
+    return count;
+}
+
+思路：
+遍历所有元素，当元素值小于目标值时计数加一，返回计数值。
