@@ -1,0 +1,20 @@
+int mySqrt(int x){
+    if(x<=1) return x;
+    int left=0,right=x,mid;
+    while(left<right){
+        mid=(left+right)/2;
+        if(mid==x/mid) return mid;
+        else if(mid<x/mid) left=mid+1;
+        else right=mid;
+    }
+    return left-1;
+}
+
+用时：0ms 超越100%
+内存：7MB 超越67.15%
+
+思考感悟：
+1.在第一次的代码书写中使用的是从一开始遍历至小于x的最大值的方法，但由于此方法遍历的数字过多，当输入数据到达一定大小时，将会超时而使程序停止运行。
+2.在有范围的遍历的题目中，一般采用的减少时间消耗的方法有使用其他容器或使用二分法。
+  而此题使用二分法则可以通过每次减少一半的遍历范围有效的大幅度提高程序的运行速度。
+3.但在使用二分法的过程中，需要注意的是输出的值是取当前步骤的左值还是右值。
