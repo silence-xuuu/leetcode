@@ -1,15 +1,13 @@
 bool isUgly(int num){
     if(num==0) return false;
-    while(num!=1){
-        int count=num;
-        while(count%2==0) count/=2;
-        while(count%3==0) count/=3;
-        while(count%5==0) count/=5;
-        if(count==num) return false;
-        else num=count;
-    }
-    return true;
+        while(num%2==0) num/=2;
+        while(num%3==0) num/=3;
+        while(num%5==0) num/=5;
+        return ((1 == num) ? true : false);
 }
 
 思路：
 若为零直接输出不是；若不等于一则分别对2,3,5取商直到等于一跳出循环或都无法除尽返回错误。
+
+思考感悟：
+代码简洁性的改进方法可以适当使用：型语句（在程序运行较为简单时），若不同的运行方式变化较多还是建议使用平常语句不容易出错。
