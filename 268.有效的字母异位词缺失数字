@@ -1,0 +1,24 @@
+int missingNumber(int* nums, int numsSize){
+    int sum=nums[0],max=nums[0],min=nums[0];
+    while(numsSize==1){
+        if(nums[0]==1) return 0;
+        if(nums[0]==0) return 1;
+    }
+    for(int i=1;i<numsSize;i++){
+        sum+=nums[i];
+        if(nums[i]>max) max=nums[i];
+        if(nums[i]<min) min=nums[i];
+    }
+    int temp=(min+max)*(max-min+1)/2;
+    if(temp==sum){
+        if(min==0) return max+1;
+        else return 0;
+    }
+    return temp-sum;
+}
+
+用时：28Ms 79.05%
+内存：7.6MB 33.02%
+
+思路：
+先判断位数是否为1，然后计算所有数字之和与最大最小的等差数列的差，若差不为零则输出，若差为零，分为首位为1和不为一两种情况。
