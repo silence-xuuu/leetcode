@@ -1,0 +1,18 @@
+bool isAnagram(char *s, char *t)
+{
+    int i,temp1[26]={0},temp2[26] ={0},n=strlen(s),m=strlen(t);
+    if(n!=m) return false;
+    for (i=0;s[i]!='\0';i++){
+        temp1[s[i]-'a']++;
+        temp2[t[i]-'a']++;
+    }        
+    for (i=0;i<26;i++)                        
+        if (temp1[i]!=temp2[i])    return false;
+    return true;                                        
+}
+
+用时：4Ms 超越：92.30%
+内存：7MB 超越：28.33%
+
+思路：
+先判断位数是否相等，新建两个数组存储每个字母出现的次数，最后遍历判断个数是否相等。
