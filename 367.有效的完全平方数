@@ -1,0 +1,17 @@
+bool isPerfectSquare(int num){
+    if(num==1) return true;
+    long left=0,right=num,mid;
+    while(left<right){
+        mid=(left+right)/2;
+        if(mid*mid==num) return true;
+        if(mid*mid<num) left=mid+1;
+        else right=mid;
+    }
+    return false;
+}
+
+//4Ms 74.76%
+//6.7MB 5.71%
+
+//思路：
+//二分法判断是否mid的平方等于所给数值，遍历完毕后如果没有就返回false。
