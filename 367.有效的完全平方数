@@ -1,17 +1,20 @@
 bool isPerfectSquare(int num){
-    if(num==1) return true;
-    long left=0,right=num,mid;
-    while(left<right){
-        mid=(left+right)/2;
-        if(mid*mid==num) return true;
-        if(mid*mid<num) left=mid+1;
-        else right=mid;
+    if(num==0||num==1) return true;
+    long sum=0;
+    for(int i=1;i<num;i+=2){
+        sum+=i;
+        if(sum==num) return true;
+        if(sum>num) return false;
     }
     return false;
 }
 
-//4Ms 74.76%
+//0Ms 100%
 //6.7MB 5.71%
 
 //思路：
-//二分法判断是否mid的平方等于所给数值，遍历完毕后如果没有就返回false。
+//经过分析可得，完全平方数一定是连续个奇数的和，于是每次加上一个新的奇数后判断是否等于所给数，遍历完成后返回false。
+
+//思考感悟：
+//1.一般的数组搜索给定值的减少时间方法：二分法、栈等。
+//2.遇到有特殊性质的数组搜索，可以通过分析得到符合要求数字的同一性质，此时往往比二分法等方法更加节省时间（因为运用了特殊性质多想了一步）。
