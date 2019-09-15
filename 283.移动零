@@ -1,0 +1,13 @@
+void moveZeroes(int* nums, int numsSize){
+    int count=0;
+    for(int i=0;i<numsSize;i++){
+        if(nums[i]!=0) nums[count++]=nums[i];
+    }
+    while(count<numsSize) nums[count++]=0;
+}
+
+16Ms 97.86%
+9.1MB 5.22%
+
+思路：
+遍历数组，若不为零则记录在计数位，最后将末位多余的赋值零。
