@@ -1,13 +1,23 @@
-char findTheDifference(char * s, char * t){
-    int count=0,i;
-    for(i=0;t[i]!='\0';i++) count+=t[i]-'a';
-    for(i=0;s[i]!='\0';i++) count-=s[i]-'a';
-    return 'a'+count;
+char findTheDifference(char* s, char* t)
+{
+    char c = 0;
+    while(*s)
+    {
+       c ^= *s++;
+    }
+    while(*t)
+    {
+       c ^= *t++;
+    }
+    return c;
 }
 
 //4Ms 75.69%
-//7MB 71.05%
+//6.9MB 84.21%
 
 //思路：
-//计算两个字符串数组的ASCII码之差，并返回‘a’加上差值的数字。
+//一路异或过去，遇到重复自动消掉，最后剩下的就是所要找的值。
 
+//思考感悟：
+//1.在字符串或者数组中寻找不同的值的时候，常用的方法有ASCII码的转换，亦或的操作，但由于亦或操作的执行用时会比遍历查询数字的ascii码快一点，所以很多时候用亦或会在时间上有一定的优势。
+//2.但有句港句，在此题的解题过程中，用ASCII码解决也是一种非常简洁快速的方法。
