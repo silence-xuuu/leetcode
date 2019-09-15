@@ -1,0 +1,13 @@
+char findTheDifference(char * s, char * t){
+    int count=0,i;
+    for(i=0;t[i]!='\0';i++) count+=t[i]-'a';
+    for(i=0;s[i]!='\0';i++) count-=s[i]-'a';
+    return 'a'+count;
+}
+
+//4Ms 75.69%
+//7MB 71.05%
+
+//思路：
+//计算两个字符串数组的ASCII码之差，并返回‘a’加上差值的数字。
+
