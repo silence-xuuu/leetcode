@@ -1,0 +1,17 @@
+int arrangeCoins(int n){
+    long sum=0;
+    int i=1,count=0;
+    while(sum<n){
+        sum+=i;
+        i++;
+        count++;
+    }
+    if(sum!=n) return count-1;
+    else return count;
+}
+
+//16ms 51.94%
+//6.8mb 53.33%
+
+//思路：
+//计算在加上多少层后得到的数字大于所给的数据，如果与原数字不同则返回减一的值。
