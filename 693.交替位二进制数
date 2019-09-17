@@ -1,0 +1,18 @@
+bool hasAlternatingBits(int n){
+    int a[1000]={0},i=0;
+    while(n){
+        a[i]=n%2;
+        i++;
+        n/=2;
+    }
+    for(int j=0;j<i-1;j++){
+        if(a[j]==a[j+1]) return false;
+    }
+    return true;
+}
+
+//4ms 65.28%
+//6.6mb 92.45%
+
+//思路：
+//反向存储改数字的二进制值，一次遍历判断是否有相邻的元素相等。
