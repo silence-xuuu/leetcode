@@ -1,16 +1,23 @@
 int minMoves(int* nums, int numsSize){
-    int count=0,min=nums[0];
-    for(int i=0;i<numsSize;i++){
-        if(nums[i]<min) min=nums[i];
+    int i, min_index = 0;
+    for (i = 1; i < numsSize; ++i){
+        if (nums[i] < nums[min_index]) min_index = i;
     }
-    for(int i=0;i<numsSize;i++){
-        count+=nums[i]-min;
+    int base = nums[min_index], count = 0;
+    for (i = 0; i < numsSize; ++i){
+        count += nums[i] - base;
     }
     return count;
 }
 
-//56ms 83.93%
-//8.4mb 64%
+//52ms 96.43%
+//8.3mb 76%
 
 //思路：
-//给n-1个元素加一等于给一个元素减一，循环第一遍找到最小的元素，循环第二遍记录所有元素与最小元素的差。
+//在第一步查找最小值时，采用的是下标比较法，记录的是最小值的下标，从而减少了比较后重复记录数据到下一次比较的时间。
+//其余部分的思路与第一次的方法一样。
+
+//思考感悟：
+//1.此题同样是两次循环，但是可以在第一步的循环中通过改变比较大小的方式节约时间。
+//2.在进行数组内的寻找最大最小值\大小比较时，使用记录下标的方法可以通过减少每次储存较小值的内存占用和时间，从而拥有高一点的程序运行效率。
+//3.某些程序题考验的主要是算法的能力，主要看对题意的理解程度，比如此题就是使用的逆向思考的方法，将每次改变n-1个值转换为每次改变一个值，从而大幅度提高程序效率。
