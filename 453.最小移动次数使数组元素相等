@@ -1,0 +1,16 @@
+int minMoves(int* nums, int numsSize){
+    int count=0,min=nums[0];
+    for(int i=0;i<numsSize;i++){
+        if(nums[i]<min) min=nums[i];
+    }
+    for(int i=0;i<numsSize;i++){
+        count+=nums[i]-min;
+    }
+    return count;
+}
+
+//56ms 83.93%
+//8.4mb 64%
+
+//思路：
+//给n-1个元素加一等于给一个元素减一，循环第一遍找到最小的元素，循环第二遍记录所有元素与最小元素的差。
