@@ -2,25 +2,38 @@
 //输入: [1,2,3,4,5,6,7] 和 k = 3
 //输出: [5,6,7,1,2,3,4]
 
-void rotate(int* nums, int numsSize, int k){
-    if(k>=numsSize) k=k%numsSize;
-    if(numsSize==1||k==0) return nums;
-    int temp[numsSize];
-    for(int i=0;i<k;i++){
-        temp[i]=nums[numsSize-k+i];
+void re(int* nums, int start ,int end){
+    
+    while(start<end){
+        int temp=nums[start];
+        nums[start++]=nums[end];
+        nums[end--]=temp;
     }
-    for(int i=numsSize-k-1;i>=0;i--){
-        nums[i+k]=nums[i];
-    }
-    for(int i=0;i<k;i++){
-        nums[i]=temp[i];
-    }
-    return nums;
 }
 
-//16ms 97.61%
+void rotate(int* nums, int numsSize, int k){
+    if(numsSize<k){
+        k=k%numsSize;
+    re(nums,0,numsSize-k-1);
+    re(nums,numsSize-k,numsSize-1);
+    re(nums,0,numsSize-1);
+    }else{
+        
+    re(nums,0,numsSize-k-1);
+    re(nums,numsSize-k,numsSize-1);
+    re(nums,0,numsSize-1);
+    }
+}
+
+//12ms 100%
 //9mb 5.24%
 
 //思路：
-//首先判断旋转个数如果大于数组长度则取余，将无输入、无改变的特殊情况剔除。
-//将待移动数组的提前位另外存储，将前位移动到指定位置，将待定区数组存入原数组。
+//首先判断旋转个数如果大于数组长度则取余。
+//另写翻转数组子函数。翻转三次数组：置后数组内部翻转、提前数组内部翻转、整个数组全部翻转。
+
+//思考感悟：
+//1.全部遍历每次向后移动一位移动k次，此种方法简单但是容易超时：数组中的每次移动都需要大量元素移动，时间消耗过大。
+//2.第一种方法通过另外的空间存储后移位置，有效避免了时间消耗和多次移动带来的问题，但在空间上额外有占用，程序效率依旧比较低下。
+//3.刚开始考虑过翻转解决问题，但只想到两次翻转所以无法解决问题。
+//4.在数组整体后移相关的题目中，翻转的方法似乎使用很广泛（基本能解决但是有的比较难想），允许额外空间的情况下法1也是不错的选择。
