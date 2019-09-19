@@ -1,3 +1,11 @@
+/*
+给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+
+给定 nums = [2, 7, 11, 15], target = 9
+因为 nums[0] + nums[1] = 2 + 7 = 9
+所以返回 [0, 1]
+*/
+
 int* twoSum(int* nums, int numsSize, int target, int* returnSize){
     int i,j,count=0;
     int *result;
@@ -16,9 +24,11 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize){
     return 0;
 }
 
-思路：暴力迭代法
-双层循环遍历寻找符合的两个元素值。
+//208 ms	7.4 MB
 
-思考感悟：
-1.hash表的学习。
-2.多次循环套用时适当牺牲空间复杂度减少时间复杂度。
+//思路：暴力迭代法
+//双层循环遍历寻找符合的两个元素值。
+
+//思考感悟：
+//1.hash表的学习。
+//2.多次循环套用时适当牺牲空间复杂度减少时间复杂度。
