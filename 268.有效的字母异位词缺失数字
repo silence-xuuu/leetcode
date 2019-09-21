@@ -1,3 +1,10 @@
+/*
+给定一个包含 0, 1, 2, ..., n 中 n 个数的序列，找出 0 .. n 中没有出现在序列中的那个数。
+
+输入: [3,0,1]
+输出: 2
+*/
+
 int missingNumber(int* nums, int numsSize)
 {
     long int sum=(1+numsSize)*numsSize/2;
@@ -8,6 +15,7 @@ int missingNumber(int* nums, int numsSize)
     return sum;
 }
 
+/*
 用时：24Ms 95.51%
 内存：7.8MB 8.84%
 
@@ -16,3 +24,4 @@ int missingNumber(int* nums, int numsSize)
 
 优点：
 直接计算和值，避免了许多不同情况的考虑，减少了原方法中寻找最大最小值的时间，时间上有很大的进步。
+*/
