@@ -1,3 +1,14 @@
+/*
+给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
+
+输入: [0,1,0,3,12]
+输出: [1,3,12,0,0]
+
+说明:
+必须在原数组上操作，不能拷贝额外的数组。
+尽量减少操作次数。
+*/
+
 void moveZeroes(int* nums, int numsSize){
     int count=0;
     for(int i=0;i<numsSize;i++){
@@ -6,6 +17,7 @@ void moveZeroes(int* nums, int numsSize){
     while(count<numsSize) nums[count++]=0;
 }
 
+/*
 16Ms 97.86%
 9.1MB 5.22%
 
@@ -16,3 +28,4 @@ void moveZeroes(int* nums, int numsSize){
 1.++i和i++的不同用法注意区别，++i用前就加一而i++是用完加一。
 2.在此题的最后处理中可以得知在for循环体第一个条件值空缺时，用while虽然时间差不多，但是代码简洁性会有一定的提升。
 3.数组的重新排列类型题常考的知识点有将非指定值通过下标覆盖的方法重新将数组中的元素赋值，而这种方法可以通过避免重新建立数组和重新遍历减少时间和空间的消耗。
+*/
