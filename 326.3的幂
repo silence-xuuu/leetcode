@@ -5,16 +5,31 @@
 输出: true
 */
 
-bool isPowerOfThree(int n){
-    if(n==0) return false;
-    while(n%3==0) n/=3;
-    if(n==1) return true;
-    else return false;
+bool isPowerOfThree(int num){
+	int flag=0;
+	long m=1;
+	
+	if(num==1)flag=1;
+	else if(num%2==0||num%5==0)flag=0;
+	else{
+		while(m<num){
+			m=m*3;
+			if(m==num) flag=1;
+		}
+	}
+	if(flag==1)return true;
+	else return false;
 }
 
 /*
-20ms 74.34%
-7.3mb 90.97%
+12ms 95.34%
+7.4mb 79.86%
 
-思路：首先排除是零的情况，然后循环除三至余数不为零，n为1则返回正确。
+思路：首先排除2和5的倍数（非幂），然后从1开始乘三比大小直到大于等于num。
+
+思考感悟：
+1、此题同样可以使用递归的方法完成，但时间上并没有特别突出的优点。
+2、除了以上的几种方法外，提高时间效率的方法还有穷举法。（因为输入数字的限定类型是int所以可以直接用switch语句判断穷举）（有效避免循环hhh）
+3、新的方法通过筛去2和5的倍数有效的筛去了一个较大范围的值。又由于是从小向大的增加，而三的幂值密度在较小时较大，同样可以提高一部分效率。
+4、筛2和5应该是最小的质数所以可以覆盖一个最大的范围（在筛选时间和效率都较高的情况下）。在做筛选系列过程中，如果筛选可以极大提高效率的话十分值得尝试。
 */
