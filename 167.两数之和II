@@ -1,0 +1,43 @@
+/*
+给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。
+函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。
+说明:
+返回的下标值（index1 和 index2）不是从零开始的。
+你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素。
+
+输入: numbers = [2, 7, 11, 15], target = 9
+输出: [1,2]
+解释: 2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。
+*/
+
+int* twoSum(int* numbers, int numbersSize, int target, int* returnSize){
+    int left=0,right=numbersSize-1;
+    int *temp;
+    * returnSize=2;
+    temp=(int*)malloc(sizeof(int)*2);
+    while(left<right){
+        if(numbers[left]+numbers[right]==target){
+            temp[0]=left+1;
+            temp[1]=right+1;
+            break;
+        }
+        else if(numbers[left]+numbers[right]<target){
+            left++;
+        }
+        else right--;
+    }
+    return temp;
+}
+
+/*
+4ms 99.36%
+7.7mb 21.08%
+
+思路：
+因为原数组是升序排列，所以直接可以用从两边向中间逼近的方法找到数字和为target的两个数。
+
+思考感悟：
+1、几乎所有高效的解法使用的都是两端向中间逼近的方法，在这题中有效利用了升序数列的条件。
+2、如果没有升序的条件，可以采用的是双层循环（时间效率较差），对此题依旧适用。
+3、在逼近的解法中，还有使用双指针的方法，与数组相比在空间占用上有一定的灵活性，但在此题中对题目的解答没有太大影响。
+*/
