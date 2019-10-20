@@ -1,0 +1,24 @@
+/*
+给定一个整数，编写一个函数来判断它是否是 2 的幂次方。
+
+输入: 1
+输出: true
+解释: 20 = 1
+*/
+
+bool isPowerOfTwo(int n){
+    if(n==1) return true;
+    while(n%2==0&&n>=1){
+        n/=2;
+    }
+    if(n==1) return true;
+    else return false;
+}
+
+/*
+8ms 26.69%
+6.7mb 19.64%
+
+思路：
+先判断特殊输入1，然后在除二没有余数的情况下一直取商，最后判断是否为1.
+*/
