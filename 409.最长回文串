@@ -1,0 +1,29 @@
+/*
+给定一个包含大写字母和小写字母的字符串，找到通过这些字母构造成的最长的回文串。
+在构造过程中，请注意区分大小写。比如 "Aa" 不能当做一个回文字符串。
+*/
+
+int longestPalindrome(char * s){
+    int len=strlen(s),abc[70]={0},i,count=0,m=0;
+    for(i=0;i<len;i++){
+        abc[s[i]-'A']++;
+    }
+    for(i=0;i<70;i++){
+        if(abc[i]%2==0) count+=abc[i];
+        else if(abc[i]!=1){
+           count+=abc[i]-1; 
+           m++;
+        }
+        else if(abc[i]==1) m++;
+    }
+    if(m!=0) count++;
+    return count;
+}
+
+/*
+4ms 72.31%
+7.1mb 71.11%
+
+思路：
+用空数组计算次数，并计算得出构造回文串的长度。
+*/
