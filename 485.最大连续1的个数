@@ -28,3 +28,37 @@ int findMaxConsecutiveOnes(int* nums, int numsSize){
 思路：
 一遍遍历遇到1则计数遇到零停止，若最后一位为1则同样停止，比较存储的最大个数。
 */
+
+/*
+int findMaxConsecutiveOnes(int* nums, int numsSize)
+{
+    int count = 0;
+    int max1Count = 0;
+    bool compareFlag = false;
+    for (int i = 0; i < numsSize; i++)
+    {
+        if(nums[i] == 1){
+            count++;
+            compareFlag = true;
+            continue;
+        }
+        if (compareFlag) {  // nums[i] == 0 nums[i - 1] == 1
+            compareFlag = false;           
+            max1Count = fmax(max1Count, count);
+            count = 0;
+        }   
+    }
+    max1Count = fmax(max1Count, count);
+    return max1Count;
+}
+
+48ms 88.75%
+8.9mb 5.17%
+
+思路：
+与原方法思路大体相同。
+
+思考感悟：
+1、在思路大体相同的基础上，此方法对代码的改进体现在引用了compareFlag的bool型变量和fmax函数比较取值。
+2、此题在解析题目过程中最重要的是弄清不同情况下停止计数的方法。采用compareFlag有效减少计算时间。
+*/
