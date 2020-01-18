@@ -34,5 +34,8 @@ void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
 思路：
 将nums1数组向后移动n个位置后通过每个的对比将nums1重新填充。
 
-
+思考感悟：
+1、本题的正常解决思路都是逐个比较填充法。（第一反应是将nums2与nums1先整合再直接sort最后sort格式麻烦作罢）
+2、提高速度的方法还有将12分别排序后使用memcpy函数。
+3、此类题型尽量使用一遍遍历的方法（不到一遍也行）限制自己程序的运行时间，大多遍历一遍的方法时间都相差不大。
 */
