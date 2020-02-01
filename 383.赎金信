@@ -1,0 +1,26 @@
+/*
+给定一个赎金信 (ransom) 字符串和一个杂志(magazine)字符串，判断第一个字符串ransom能不能由第二个字符串magazines里面的字符构成。
+如果可以构成，返回 true ；否则返回 false。
+(题目说明：为了不暴露赎金信字迹，要从杂志上搜索各个需要的字母，组成单词来表达意思。)
+*/
+
+bool canConstruct(char * ransomNote, char * magazine){
+    int map[26] = {0},i;
+    for (i = 0; ransomNote[i] != '\0'; i++){
+        map[ransomNote[i] - 'a']++;
+    }
+    for (i = 0; magazine[i] != '\0'; i++){
+        map[magazine[i] - 'a']--;
+    }
+    for(int i = 0; i < 26; i++){
+        if(map[i] > 0) return false;
+    }
+    return true;
+}
+
+/*
+8ms 74.74%
+
+思路：
+分别遍历一遍记录字母出现的次数，再对计数数组数据分析。
+*/
