@@ -23,3 +23,26 @@ bool containsDuplicate(int* nums, int numsSize){
 思路：
 qsort排序后遍历找相同值。
 */
+
+/*
+int comp(const void*a,const void*b){
+    return *(int*)a-*(int*)b;
+}
+bool containsDuplicate(int* nums, int numsSize){
+    int i;
+    qsort(nums, numsSize, sizeof(int), comp);
+    for(i=0;i<numsSize-1;i++){
+        if(*(nums+i)==*(nums+i+1)) return true;
+    }
+    return false;
+}
+
+20ms 97.11%
+
+思路同上。
+
+思考感悟:
+1、此题C语言的做法大多为qsort函数直接排序，或者自己定义新的函数（但需要较长的篇幅）
+2、在原来代码的基础上，新的代码减少了个数的判断，同时将数组比较变为指针比较，相对减少了一定时间。
+3、尝试的双指针法在最后一个测试用例超时，于是改用qsort排序。
+*/
