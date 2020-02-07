@@ -1,0 +1,36 @@
+/*
+编写一个函数，以字符串作为输入，反转该字符串中的元音字母。
+*/
+
+int istrue(char a){
+    if(a=='a'||a=='e'||a=='i'||a=='o'||a=='u'||a=='A'||a=='E'||a=='I'||a=='O'||a=='U') return 1;
+    else return 0;
+}
+char * reverseVowels(char * s){
+    int i=0,j=strlen(s)-1;
+    char temp;
+    while(i<j){
+        if(!istrue(s[i])) i++;
+        if(!istrue(s[j])) j--;
+        if(istrue(s[i])&&istrue(s[j])){
+            temp=s[i];
+            s[i]=s[j];
+            s[j]=temp;
+            i++;
+            j--;
+        }
+    }
+    return s;
+}
+
+/*
+0ms 100%
+
+思路：
+双指针头尾向中间逼近，遇到非元音的跳过，碰到两个元音则互换。
+
+思考感悟：
+1、此题的答题思路和上一题相似，多余的部分使用子函数判断是否为元音。
+2、为简化运算量，首先应该判断是否为元音，减少多次判断所用的时间。
+3、反转类型的题目双指针法一般是效率较高的做法，双层遍历基本上都会超时。
+*/
