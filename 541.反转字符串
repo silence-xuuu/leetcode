@@ -1,0 +1,41 @@
+/*
+给定一个字符串和一个整数 k，你需要对从字符串开头算起的每个 2k 个字符的前k个字符进行反转。如果剩余少于 k 个字符，则将剩余的所有全部反转。
+如果有小于 2k 但大于或等于 k 个字符，则反转前 k 个字符，并将剩余的字符保持原样。
+
+示例:
+输入: s = "abcdefg", k = 2
+输出: "bacdfeg"
+*/
+
+void reverse(char str[],int left,int right){
+    int temp;
+    while(left<right){
+            temp=str[left];
+            str[left]=str[right];
+            str[right]=temp;
+            left++;
+            right--;
+        }
+}
+char * reverseStr(char * s, int k){
+    int len=strlen(s),i=0,left,right,temp;
+    while(i<len-1-2*k){
+        reverse(s,i,i+k-1);
+        i=i+k+k;
+    }
+    if(len-i>=k) reverse(s,i,i+k-1);
+    else if(len-i<k) reverse(s,i,len-1);
+    return s;
+}
+
+/*
+0ms 100%
+
+思路：
+每隔2k将前k个翻转，再判断剩下元素的个数分别反转。
+
+思考感悟：
+1、此题的难点在于情况非常多，判断分隔节点的下标取值十分重要，否则容易出现无效反转。
+2、C语言的缺点在于没有直接引用的反转函数，于是另外写了一个反转函数可以使代码简洁化许多。
+3、提交时错把char打成int型同样通过了检测，int型比char型所占空间更大表示范围更广所以并没有报错...
+*/
