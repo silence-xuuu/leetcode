@@ -1,0 +1,46 @@
+/*
+给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
+说明：本题中，我们将空字符串定义为有效的回文串。
+
+示例 1:
+输入: "A man, a plan, a canal: Panama"
+输出: true
+示例 2:
+输入: "race a car"
+输出: false
+*/
+
+int istrue(char a){
+    if(a>='a'&&a<='z') return 1;
+    if(a>='A'&&a<='Z') return 2;
+    if(a>='0'&&a<='9') return 3;
+    else return 0;
+}
+bool isPalindrome(char * s){
+    int i=0,len=strlen(s),j;
+    j=len-1;
+    while(i<j){
+        if(!istrue(s[i])) i++;
+        if(!istrue(s[j])) j--;
+        else if(istrue(s[i])&&istrue(s[j])){
+            if(istrue(s[i])==2) s[i]+=32;
+            if(istrue(s[j])==2) s[j]+=32;
+            if(s[i]!=s[j]) return false;
+            i++;
+            j--;
+        }
+    }
+    return true;
+}
+
+/*
+0ms 100%
+
+思路：
+先判断是否为字母或数字，双指针头尾判断是否相等。
+
+思考感悟：
+1、此题的重点在于大小写的转化，在此使用的是先判断是否为有效字符，通过子函数分离大小写。
+2、由于C语言无直接转换判断包，于是自己写了子函数，好处是可以在返回值上做标记判断。
+3、此题跟之前的反转类型题解法相似，同样是通过先判断减少运行时间。
+*/
