@@ -9,14 +9,22 @@ int majorityElement(int* nums, int numsSize){
     for(i=1;i<numsSize;i++){
         if(nums[i]==temp) count++;
         else count--;
-        if(count==0) temp=nums[i+1];
+        if(count<0){
+            temp=nums[i];
+            count=0;
+        } 
     }
     return temp;
 }
 
 /*
-24ms 79.98%
+20ms 96.15%
 
 思路：
 一遍遍历，遇到相同元素计数加一，不同减一，计数为零换下一个元素。
+
+思考感悟：
+1、此题主要也是思路问题，可以使用计数法或者排序法。
+2、排序法主要利用题目中大于n/2的条件，排序后取出下标为n/2的元素即可，但此种方法的时间复杂度较高。
+3、第二次的方法将更新时的变化改为count清零，temp移至i，有效避免数组溢出同时清零减少时间。
 */
