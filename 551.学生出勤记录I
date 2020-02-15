@@ -1,0 +1,48 @@
+/*
+给定一个字符串来代表一个学生的出勤记录，这个记录仅包含以下三个字符：
+
+'A' : Absent，缺勤
+'L' : Late，迟到
+'P' : Present，到场
+如果一个学生的出勤记录中不超过一个'A'(缺勤)并且不超过两个连续的'L'(迟到),那么这个学生会被奖赏。
+
+你需要根据这个学生的出勤记录判断他是否会被奖赏。
+*/
+
+class Solution {
+public:
+    bool checkRecord(string s) {
+        int i=0,countA=0,countL=0;
+        while(i<s.size()){
+           if(s[i]=='A'){
+               countA++;
+               i++;
+               countL=0;
+           } 
+           while(s[i]=='L'){
+               countL++;
+               i++;
+               if(countL>2) return false;
+            }
+            if(countA>1) return false;
+            if(s[i]=='P') {
+                i++;
+                countL=0;
+            } 
+        }
+        return true;
+    }
+};
+
+/*
+0ms 100%
+
+思路：
+一遍遍历，用if计数A用while计数L，分别判断超出则返回true。
+
+思考感悟：
+1、此题的重点在于分开计数，使用while计数连续的L并在内直接判断返回。
+2、由于需要分开计数，判断时使用while避免多次下标移动。
+3、直接在循环内判断减少重复计算所花费的时间。
+4、需要注意的是countL的清零需要在非L时每一次进行一遍（虽然代码长可是时长香啊）。
+*/
