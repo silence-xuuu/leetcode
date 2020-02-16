@@ -1,0 +1,40 @@
+/*
+给定一个字符串，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
+
+示例 1:
+
+输入: "Let's take LeetCode contest"
+输出: "s'teL ekat edoCteeL tsetnoc" 
+*/
+
+void reverse(char str[],int left,int right){
+    char temp;
+    while(left<right){
+            temp=str[left];
+            str[left]=str[right];
+            str[right]=temp;
+            left++;
+            right--;
+        }
+}
+char * reverseWords(char * s){
+    int len=strlen(s),i=0,j=0,count=0;
+    for(i=0;i<=len;i++){
+        if(s[i]!=' ') count++;
+        if(s[i]==' ' || s[i]=='\0'){
+            reverse(s,j,i-1);
+            j=i+1;
+            count=0;
+        }
+    }
+    return s;
+}
+
+/*
+8ms 91.60%
+
+思路：
+一次遍历，计数到下一个空格前的个数，引用函数翻转。
+
+
+*/
