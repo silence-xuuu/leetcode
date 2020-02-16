@@ -35,3 +35,29 @@ public:
 思路：
 从末位开始相加，记录每一位的加数和并反向转换格式插入返回字符串中。
 */
+
+/*
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+        string str;
+        int cur = 0, i = num1.size()-1, j = num2.size()-1;
+        while (i >= 0 || j >= 0 || cur != 0) {
+            if (i >= 0) cur += num1[i--] - '0';
+            if (j >= 0) cur += num2[j--] - '0';
+            str += to_string (cur % 10);
+            cur /= 10;
+        }
+        reverse(str.begin(), str.end());
+        return str;
+    }
+};
+
+思路：
+末位相加计算进位后翻转返回字符串。
+
+思考感悟：
+1、此题使用直接转换为数字的方法后当数字过大时会有确定的计算误差导致不可行。
+2、转换为ASCII码相加再转换虽然较为浪费时间但精确性较高，主要难点在于进位的处理。
+3、改进后的方法中使用了新的变量记录进位值，为减少调用函数记录的时间到最后再一次进行完翻转操作
+*/
