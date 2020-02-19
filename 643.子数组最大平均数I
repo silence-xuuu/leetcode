@@ -1,0 +1,30 @@
+/*
+给定 n 个整数，找出平均数最大且长度为 k 的连续子数组，并输出该最大平均数。
+
+示例 1:
+输入: [1,12,-5,-6,50,3], k = 4
+输出: 12.75
+解释: 最大平均数 (12-5-6+50)/4 = 51/4 = 12.75
+*/
+
+double findMaxAverage(int* nums, int numsSize, int k){
+    int i,count=0;
+    for(i=0;i<k;i++) count+=nums[i];
+    int temp=count;
+    for(i=k;i<numsSize;i++){
+        temp=temp+nums[i]-nums[i-k];
+        if(temp>count) count=temp;
+    }
+    return (double) count/k;
+}
+
+/*
+156ms 76.59%
+
+思路：
+先记录前k个的值，向前移动如果值更大则更新。
+
+思考感悟：
+1、此题效率最高的方法就是一次移动比较，如果需要提升可以修改一下变量单位以减少空间和时间的消耗。
+2、易错点在于不能直接在原计数值上修改，应该比较的是前后和值避免误差。
+*/
