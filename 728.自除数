@@ -1,0 +1,35 @@
+/*
+自除数 是指可以被它包含的每一位数除尽的数。
+例如，128 是一个自除数，因为 128 % 1 == 0，128 % 2 == 0，128 % 8 == 0。
+还有，自除数不允许包含 0 。
+给定上边界和下边界数字，输出一个列表，列表的元素是边界（含边界）内所有的自除数。
+*/
+
+class Solution {
+public:
+    vector<int> selfDividingNumbers(int left, int right) {
+        vector<int> res;
+        int temp;
+        for(int i=left;i<=right;i++){
+            int num=i;
+            while(num%10){
+                if(i%(num%10)) break;
+                num/=10;
+            }
+            if(!num) res.push_back(i);
+        }
+        return res;
+    }
+};
+
+/*
+0ms 100%
+
+思路：
+遍历使用while判断是否符合条件，不符合跳出，符合记入。
+
+思考感悟：
+1、为避免malloc数组和returnsize改变浪费空间，换了c++。（插入新数组也很方便惹）
+2、判断时将判断是否为零和while的条件放在一起有效减少代码长度。
+3、同样可以将判断单个数组的代码分开成函数更有条理，但是不分开简化之后也很有效。
+*/
