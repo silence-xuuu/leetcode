@@ -1,0 +1,20 @@
+/*
+实现函数 ToLowerCase()，该函数接收一个字符串参数 str，并将该字符串中的大写字母转换成小写字母，之后返回新的字符串。
+*/
+
+char * toLowerCase(char * str){
+    int len=strlen(str),i;
+    for(i=0;i<len;i++) if(str[i]<='Z'&&str[i]>='A') str[i]+=32;
+    return str;
+}
+
+/*
+0ms 100%
+
+思路：
+一次遍历将大写字母的ASCII码增加32.
+
+思考感悟：
+1、非常简单的思路和代码，主要是想到ASCII码。
+2、几乎所有的字母转换类型题都可以从ASCII码下手简单而且效率很高。
+*/
