@@ -1,0 +1,36 @@
+/*
+给定一个非空字符串 s，最多删除一个字符。判断是否能成为回文字符串。
+*/
+
+int istrue(char* s,int left,int right){
+    while(left<right){
+        if(s[left]!=s[right]) return 0;
+            left++;
+            right--;
+    }
+    return 1;
+}
+bool validPalindrome(char * s){
+    int count=0,left=0,right=strlen(s)-1;
+    while(left<right){
+        if(s[left]!=s[right]){
+            if(istrue(s,left+1,right)||istrue(s,left,right-1)) return true;
+            else return false;
+        } 
+        left++;
+        right--;
+    }
+    return true;
+}
+
+/*
+20ms 85.32%
+
+思路：
+建立判断是否为回文串的子函数，双指针遍历字符串遇到不符合的值判断减左和减右的不同情况。
+
+思考感悟：
+1、本来打算直接判断减左减右，但对于两种都可以的情况没法正常判断，只能改成子函数法。
+2、此题的关键在于当不符合条件时，需要判断left+1和right-1两种情况。
+3、回文系列题目中出现频率最高的就是双指针法，基本可以找到不同改变的通解。
+*/
