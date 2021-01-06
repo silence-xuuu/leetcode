@@ -1,0 +1,45 @@
+/*
+编写一个函数来查找字符串数组中的最长公共前缀。
+
+如果不存在公共前缀，返回空字符串 ""。
+
+示例 1:
+
+输入: ["flower","flow","flight"]
+输出: "fl"
+示例 2:
+
+输入: ["dog","racecar","car"]
+输出: ""
+解释: 输入不存在公共前缀。
+
+*/
+
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        if(strs.empty()) return "";            //判断是否为空
+        string str="";
+        for(int i=0;i<strs[0].size();i++){     //外层为第一个单词长度
+            for(int j=0;j<strs.size();j++){    //内层为单词个数
+                if(strs[0][i]!=strs[j][i])
+                return str;
+            }
+            str+=strs[0][i];                  //结果拼接
+        }
+        return str;
+    }
+};
+
+//4ms 9.6MB
+//93% 60%
+
+/*
+思路：首先判断是否为空，然后使用第一个单词来遍历判断每个单词指定位是否都一样，一样则拼接。
+
+思考感悟：
+1、对于vector类型，判断里面是否全部为空时，可以使用.empty方法。
+2、遍历的方法时间复杂度不高，为减少时间还能指定遍历的第一层为第一个单词的长度。
+3、C++中拼接长度的方式相比C语言简单许多。
+
+*/
