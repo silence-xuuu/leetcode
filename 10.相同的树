@@ -1,0 +1,37 @@
+/*
+给定两个二叉树，编写一个函数来检验它们是否相同。
+如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
+
+示例 1:
+输入:       1         1
+          / \       / \
+         2   3     2   3
+
+        [1,2,3],   [1,2,3]
+
+输出: true
+*/
+
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(p==nullptr && q==nullptr) return true;
+        if((p==nullptr && q!=nullptr)||(p!=nullptr && q==nullptr)) return false;
+        if(p->val != q->val) return false;
+        return(isSameTree(p->left,q->left)&&isSameTree(p->right,q->right));
+    }
+};
+
+/*
+0ms 100%
+
+思路：递归。
+
+思考感悟：
+本题需要对二叉树的每一个节点进行比对，所以使用递归不会增加复杂度。
+
+二叉树简单递归的步骤：
+1、判断退出条件（一般是节点是否为NULL）
+2、判断循环条件
+3、判断递归条件
+*/
