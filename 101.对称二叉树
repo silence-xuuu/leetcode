@@ -1,0 +1,44 @@
+  
+/*
+给定一个二叉树，检查它是否是镜像对称的。
+
+例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
+
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+ 
+
+但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:
+
+    1
+   / \
+  2   2
+   \   \
+   3    3
+*/
+
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        return istrue(root,root);
+    }
+    bool istrue(TreeNode* p,TreeNode* q){
+        if(p==NULL && q== NULL) return true;
+        if(p==NULL || q==NULL) return false;
+        if(p->val != q->val) return false;
+        return (istrue(p->left,q->right)&&istrue(p->right,q->left));
+    }
+};
+
+/*
+0ms 100%
+
+思路：递归。
+
+思考感悟：
+1、按照第100题的步骤填写递归函数。
+2、由于此题需要判断两个子树之间的关系，所以创建了判断子函数。
+*/
