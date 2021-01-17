@@ -6,6 +6,7 @@
 说明：叶子节点是指没有子节点的节点。
 */
 
+/*
 class Solution {
 public:
     int minDepth(TreeNode* root) {
@@ -15,10 +16,36 @@ public:
         return min(minDepth(root->left),minDepth(root->right))+1;
     }
 };
+*/
+
+class Solution {
+public:
+    int depth = 1;
+    int minDep = 100000;
+    int minDepth(TreeNode* root) {
+        if(root == NULL){
+            return 0;
+        }
+        if(root->left == NULL){
+            return 1+minDepth(root->right);
+        }
+        if(root->right == NULL){
+            return 1+minDepth(root->left);
+        }
+        if(root->left !=NULL && root->right !=NULL){
+            return 1+ min(minDepth(root -> left),minDepth(root -> right));
+        }
+        return 0;
+    }
+};
 
 /*
-516ms 10%
+292ms 95.85%
 
 思路：递归。
+
+思考感悟：
+1、大体思路的递归思路和最大深度类似，不同的是左右子树为空时的判断。
+2、在函数开始前定义最大深度可减少一定时间。
 
 */
