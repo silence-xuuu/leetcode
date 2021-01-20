@@ -1,0 +1,39 @@
+/*
+给定两个字符串 s 和 t，判断它们是否是同构的。
+如果 s 中的字符可以按某种映射关系替换得到 t ，那么这两个字符串是同构的。
+每个出现的字符都应当映射到另一个字符，同时不改变字符的顺序。不同字符不能映射到同一个字符上，相同字符只能映射到同一个字符上，字符可以映射到自己本身。
+
+示例 1:
+输入：s = "egg", t = "add"
+输出：true
+
+示例 2：
+输入：s = "foo", t = "bar"
+输出：false
+*/
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        map<char,char> temp1;
+        map<char,char> temp2;
+        for(int i=0;i<s.length();++i){
+            if(temp1[t[i]]==0&&temp2[s[i]]==0){
+                temp1[t[i]]=s[i];
+                temp2[s[i]]=t[i];
+            } 
+            else if(temp1[t[i]]!=s[i] || temp2[s[i]]!=t[i]) return false;
+        }
+        return true;
+    }
+};
+
+/*
+8ms 77.12%
+
+思路：利用map构建两个映射，遍历填充两个映射，若对应不相等则返回错误。
+
+思考感悟：
+1、在C语言中一般使用额外的数组进行存储，但会导致代码变复杂，而C++中的map可以很好的解决。
+2、遇到字母、数字等的相对应关系时，都可以用map方法解决，减少代码复杂度和储存空间大小。
+*/
